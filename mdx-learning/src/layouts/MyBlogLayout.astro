@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav><h1>My blog</h1></nav>
+    </header>
+    <main class="main">
+        <slot/>
+    </main>
+
+</body>
+</html>
+
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    nav{
+        background-color: cadetblue;
+    }
+    nav,h1{
+        padding: 10px;
+    }
+    .main{
+        min-height: screen;
+       
+    }
+
+</style>

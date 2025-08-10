@@ -1,0 +1,14 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content"
+import MyBlogLayout from "../../layouts/MyBlogLayout.astro";
+
+const posts: CollectionEntry<'blogs'>[] = await getCollection('blogs')
+
+---
+
+<MyBlogLayout>
+    <ul>{posts.map((post)=>(
+        <li><a href={`/myblog/${post.slug}`}>{post.data.title}</a></li>
+    ))}</ul>
+</MyBlogLayout>

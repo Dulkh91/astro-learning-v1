@@ -1,0 +1,44 @@
+---
+import {titleToSlug} from '../../utils/titleToSlug'
+interface ApiFetch {
+    id: number;
+    title: string;
+    slug: string;
+    content: string;
+    author: string;
+    category: string
+}
+
+let datas: ApiFetch[] | null = null;
+let error = null
+
+try {
+    const res = await fetch('https://api.vercel.app/blog')
+    
+    if(!res.ok){
+     throw new Error(`Server request failed with status:${res.status}`)
+    }
+    datas = await res.json()
+} catch (err) {
+    console.error("Failed to fetch data:", err);
+     error = err
+}
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>blog post</h1>
+    {error?<p>Error: {error}</p>:(
+        datas?.map(d=>(
+            <ul>
+                <li><a href={`/blog/${d.id}-${titleToSlug(d.title)}`}>{d.title}</a></li>
+            </ul>
+        ))
+    )}
+</body>
+</html>

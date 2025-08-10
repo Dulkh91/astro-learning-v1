@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Dropdown from "../components/Dropdown.vue"
+import Counter from '../components/Counter.jsx';
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<Counter client:load/>
+	<hr>
+	<Dropdown client:visible/>
+	<hr>
+	<ul>
+		<li><a href="/blog">Blog page</a></li>
+	</ul>
+</Layout>
+

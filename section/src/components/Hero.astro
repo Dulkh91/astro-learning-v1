@@ -1,0 +1,19 @@
+---
+interface Props{
+    title: string;
+    description: string;
+    ctaText: string;
+}
+
+const {title, description,ctaText} = Astro.props
+---
+
+<section class=" bg-gradient-to-r from-blue-500 to-purple-600 py-20 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-4">{title}</h1>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">{description}</p>
+        <button class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+            {ctaText}
+        </button>
+    </div>
+</section>

@@ -1,0 +1,21 @@
+---
+// src/components/Testimonials.astro
+const testimonials = [
+  { name: "អ្នកប្រើ ១", quote: "គេហទំព័រនេះអស្ចារ្យណាស់!" },
+  { name: "អ្នកប្រើ ២", quote: "សេវាកម្មល្អឥតខ្ចោះ។" }
+];
+---
+
+<section class="py-16 bg-gray-100">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">មតិអ្នកប្រើ</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      {testimonials.map((testimonial) => (
+        <div class="bg-white p-6 rounded-lg shadow">
+          <p class="italic">"{testimonial.quote}"</p>
+          <p class="font-semibold mt-4">— {testimonial.name}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

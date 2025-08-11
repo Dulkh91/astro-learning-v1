@@ -1,0 +1,22 @@
+---
+import "../styles/global.css";
+import Layout from '../layouts/Layout.astro';
+import Hero from "../components/Hero.astro";
+import Counter from "../components/Counter";
+import AnimatedCard from "../components/AnimatedCard.astro";
+import Testimonials from "../components/Testimonials.astro";
+
+---
+
+<Layout>
+	<Hero 
+		title="សូមស្វាគមន៍មកកាន់គេហទំព័រខ្ញុំ" 
+  		description="យើងផ្តល់នូវដំណោះស្រាយបច្ចេកវិទ្យាទំនើប។"
+  		ctaText="ចាប់ផ្តើមឥឡូវនេះ"
+	/>
+	<Counter
+	 client:load
+	/>
+	<AnimatedCard/>
+	<Testimonials/>
+</Layout>

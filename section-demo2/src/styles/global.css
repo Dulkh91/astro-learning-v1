@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* សម្រាប់ Scroll Effects */
+
+/* section {
+  transition: all 0.5s ease-out;
+} */
+
+body{
+  @apply dark:bg-slate-800
+}

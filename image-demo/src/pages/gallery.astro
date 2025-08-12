@@ -1,0 +1,20 @@
+---
+import { getImage } from "astro:assets";
+import Layout from '../layouts/Layout.astro';
+import localImage from '../assets/kep1.jpg'
+
+const optimizeImage = await getImage({
+    src: localImage,
+    width: 600,
+    height: 600/1.5,
+    
+})
+---
+
+<Layout>
+    <h1>វិចិត្រសាលរូបភាព</h1>
+    <img src={optimizeImage.src} 
+        width={optimizeImage.attributes.width}
+        height={optimizeImage.attributes.height}
+    alt="kkk">
+</Layout>

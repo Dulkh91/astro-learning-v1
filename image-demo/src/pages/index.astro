@@ -1,0 +1,24 @@
+---
+
+import Layout from '../layouts/Layout.astro';
+import {Image} from 'astro:assets'
+import localImage from '../assets/kep1.jpg'
+
+---
+
+<Layout>
+	<h1>Hello test Image</h1>
+	<Image src={localImage}
+		width={800}
+		height={800/1.5}
+		alt={'ttt'}
+	/>
+	<Image 
+		src={'https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/ba/4a/29.jpg'}
+		width={500}
+		height={500/1.5}
+		alt={"kk"}
+		
+	/>
+	
+</Layout>

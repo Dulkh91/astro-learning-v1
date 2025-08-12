@@ -1,0 +1,21 @@
+---
+import Layout from "../../../layouts/Layout.astro"
+export const getStaticPaths = async() => {
+    
+    return [
+        {params:{gategory:"admin",id:"1"}},
+        {params:{gategory:"user", id:"2"}},
+        {params:{gategory:"editor",id:"3"}}
+    ];
+}
+
+const {gategory, id} = Astro.params
+
+//### /users/editor/3
+---
+
+<Layout>
+    <h1>User</h1>
+    <h1>user {id} in {gategory} gategory</h1>
+    <p>/users/editor/3</p>
+</Layout>

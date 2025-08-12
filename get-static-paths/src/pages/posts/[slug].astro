@@ -1,0 +1,18 @@
+---
+
+export const getStaticPaths = async() => {
+    return [{params: {slug: 'post1'}/* /posts/post1 */
+            },
+            {params:{slug:"dul"},
+
+            props: {post:"seng"} // វាសម្រាបប់បោះទិន្ន័យពី api
+            },
+            
+        ]
+    }
+const {slug} = Astro.params
+const {post} = Astro.props
+---
+
+<h1>{slug}</h1>
+<h1>My props: {post?post: "NaN"}</h1>

@@ -6,6 +6,8 @@ import type { CollectionEntry } from "astro:content";
 const allPosts: CollectionEntry<"blogs">[] = await getCollection("blogs");
 const { slug } = Astro.params;
 const slugTitle = slug ? titleToSlug(slug) : null;
+
+
 ---
 
 {
@@ -15,7 +17,7 @@ const slugTitle = slug ? titleToSlug(slug) : null;
       ${slugTitle === titleToSlug(menu.data.title) ? "dark:bg-slate-900 hover:dark:bg-slate-900 text-gray-300" : "dark:even:bg-slate-700 "}
     `}
     >
-      <a href={`/answer/${titleToSlug(menu.data.title)}`}>
+      <a href={`/answer/${titleToSlug(menu.data.title)}`} class="list-content">
         <span class="text-md py-5 p-2 text-wrap inline-block">
           {menu.data.title}
         </span>

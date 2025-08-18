@@ -1,36 +1,35 @@
 ---
-import '../styles/global.css'
-import Aside from '../components/asideBar/Aside.astro'
-import { slide } from 'astro:transitions';
+import "../styles/global.css";
+import Aside from "../components/asideBar/Aside.astro";
+import { slide } from "astro:transitions";
 ---
 
 <!doctype html>
-<html  lang="en" view-transition>
+<html lang="en" view-transition>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <slide />
-    <title>Astro Basics</title>
-  </head>
+  </head><slide></slide>
+  <title>Astro Basics</title>
+
   <body>
-    <div class="flex h-screen  overflow-hidden">
-		<!-- Aside  -->
-      <aside class="md:w-1/3 w-1/2 bg-slate-800 overflow-y-auto">
-        <div class="min-h-full">
-			    <!-- <slot name="menu"/> -->
-           <Aside/>
-		    </div>
-	  </aside>
+    <div class="flex max-h-screen min-h-screen">
+      <!-- Aside  -->
+      <aside class="md:w-1/3 w-1/2 bg-slate-800">
+        <div class="sidebar-preview min-h-screen max-h-screen overflow-y-scroll">
+          <!-- <slot name="menu"/> -->
+          <Aside />
+        </div>
+      </aside>
       <!-- Main -->
-      <main class="w-3/4 overflow-y-auto">
-		<div class=" min-h-screen">
-			<slot />
-		</div>
+      <main class="w-3/4">
+        <div class="min-h-screen max-h-screen overflow-y-auto">
+          <slot />
+        </div>
       </main>
     </div>
-    
   </body>
 </html>
 

@@ -1,12 +1,34 @@
 ---
+interface MenuEntry{
+      label: string,
+      href: string
+    }
+
 import MenuTitle from "./MenuTitle.astro"
+
+import { titleToSlug } from "../../utils/titleToSlug.ts";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const allPosts: CollectionEntry<"blogs">[] = await getCollection("blogs");
+const { slug } = Astro.params;
+// const slugTitle = slug ? titleToSlug(slug) : null;
+
+function makeEntries():MenuEntry[]{
+  return allPosts.map((menu)=>{
+        return{
+        label: menu.data.title,
+        href: menu.data.title? `/answer/${titleToSlug(menu.data.title)}` :'#_'
+      }  
+  })
+}
 
 ---
 <div class=" dark:text-white ">
     <h1 class=" text-xl font-bold w-full bg-gray-700 p-3">Questoins</h1>
-    <ul class="aside-menu" id="menu-list sidebar"> 
-      <MenuTitle/>
-    </ul>
+    
+      <MenuTitle menuList={makeEntries()}/>
+    
   </div>
 </div>
 

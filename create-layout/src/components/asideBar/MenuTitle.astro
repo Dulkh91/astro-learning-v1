@@ -1,27 +1,54 @@
 ---
-import { titleToSlug } from "../../utils/titleToSlug.ts";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-
-const allPosts: CollectionEntry<"blogs">[] = await getCollection("blogs");
-const { slug } = Astro.params;
-const slugTitle = slug ? titleToSlug(slug) : null;
-
-
----
-
-{
-  allPosts.map((menu) => (
-    <li
-      class={`pl-1 mx:px-3 cursor-pointer hover:bg-slate-600 duration-200
-      ${slugTitle === titleToSlug(menu.data.title) ? "dark:bg-slate-900 hover:dark:bg-slate-900 text-gray-300" : "dark:even:bg-slate-700 "}
-    `}
-    >
-      <a href={`/answer/${titleToSlug(menu.data.title)}`} class="list-content">
-        <span class="text-md py-5 p-2 text-wrap inline-block">
-          {menu.data.title}
-        </span>
-      </a>
-    </li>
-  ))
+interface MenuItems {
+  label: string;
+  href: string;
 }
+interface Props {
+  menuList: MenuItems[];
+}
+const { menuList } = Astro.props as Props;
+---
+<list-menu>
+<ul class="aside-menu" aria-label="Breadcrumb">
+  {
+    menuList.map(({ label, href }) => (
+      <li
+        class="pl-1 mx:px-3 cursor-pointer hover:bg-slate-600 duration-200 dark:even:bg-slate-700 hover:dark:bg-slate-900 "
+        aria-current={Astro.url.pathname == href && "page"}
+      >
+        <a href={href} class="text-md py-5 p-2 md:px-5 text-wrap inline-block ">
+          {label}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+</list-menu>
+
+<script>
+  class currentIndex extends HTMLElement {
+    connectedCallback() {
+      const container = this.querySelector('.aside-menu');
+      const currentItem = this.querySelector('[aria-current="page"]');
+
+      if (container && currentItem) {
+        // Scroll to the current item smoothly
+        currentItem.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center'
+        });
+      }
+    }
+  }
+
+  customElements.define('list-menu', currentIndex);
+</script>
+
+<style>
+  @reference "../../styles/global.css";
+
+  [aria-current="page"] {
+    @apply dark:bg-slate-900 hover:dark:bg-slate-900 text-gray-300;
+  }
+</style>

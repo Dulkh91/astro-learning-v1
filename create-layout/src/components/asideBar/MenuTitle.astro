@@ -7,17 +7,22 @@ interface Props {
   menuList: MenuItems[];
 }
 const { menuList } = Astro.props as Props;
+
 ---
 <list-menu>
 <ul class="aside-menu" aria-label="Breadcrumb">
   {
     menuList.map(({ label, href }) => (
       <li
-        class="pl-1 mx:px-3 cursor-pointer hover:bg-slate-600 duration-200 dark:even:bg-slate-700 hover:dark:bg-slate-900 "
+        class="pl-1 mx:px-3 cursor-pointer hover:bg-slate-600 duration-200 dark:even:bg-slate-700 hover:dark:bg-gray-900 "
         aria-current={Astro.url.pathname == href && "page"}
       >
-        <a href={href} class="text-md py-5 p-2 md:px-5 text-wrap inline-block ">
-          {label}
+        <a href={href} class="text-md py-5 p-2 md:px-5 text-wrap inline-block select-text ">
+           {label.split('?').map((post,index)=>(
+              <>
+                {post}{index <1 && '?'}
+              </>
+            ))}
         </a>
       </li>
     ))
@@ -47,8 +52,10 @@ const { menuList } = Astro.props as Props;
 
 <style>
   @reference "../../styles/global.css";
+  a{
+   white-space: pre-wrap;/* CSS នេះរក្សាទុកការចុះបន្ទាត់  */
+   line-height: 1.5;
+}
 
-  [aria-current="page"] {
-    @apply dark:bg-slate-900 hover:dark:bg-slate-900 text-gray-300;
-  }
+  [aria-current="page"] {@apply dark:bg-slate-900 text-gray-500 dark:text-gray-300 border-l-2}
 </style>

@@ -11,8 +11,6 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
 const allPosts: CollectionEntry<"blogs">[] = await getCollection("blogs");
-const { slug } = Astro.params;
-// const slugTitle = slug ? titleToSlug(slug) : null;
 
 function makeEntries():MenuEntry[]{
   return allPosts.map((menu)=>{
